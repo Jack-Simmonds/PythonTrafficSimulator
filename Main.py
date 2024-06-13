@@ -9,12 +9,8 @@ from CircleRoad import CircleRoad
 
 #constants
 WIDTH, HEIGHT = 800, 600
-VELOCITY = 50 #ms-1
+VELOCITY = 20 #ms-1
 pygame.init()
-
-Car1 = Car(1, 25, 300, VELOCITY)
-Car2 = Car(2, 125, 300, VELOCITY)
-cars = [Car1, Car2] 
 
 #startx, starty, endx, endy, width
 Road1 = StraightRoad(50,300,350,300,15)
@@ -23,6 +19,12 @@ Road2 = CircleRoad(50,350,300,15)
 roads = [Road1, Road2]
 #RoadMapping is a dictionary that corresponds the car to its current road. can replace with in-class scripts later. (part of checking?)
 #RoadMapping = {Car1:Road1, Car2:Road1} #bad memory allocation. replace with text. do later.
+
+
+Car1 = Car(1, 25, 300, VELOCITY, path=Road1)
+Car2 = Car(2, 125, 300, VELOCITY, path=Road1)
+cars = [Car1, Car2]
+
 
 # Set up the display
 screen = pygame.display.set_mode((WIDTH, HEIGHT))

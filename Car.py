@@ -3,25 +3,21 @@ import pygame
 import sys
 
 class Car(object):
-    def __init__(self, identifier, x, y, defaultVelocity):
+    def __init__(self, identifier, x, y, defaultVelocity, path=None):
         self.identifier = identifier
-        self.x = x
-        self.y = y
         self.color = (0,0,0) #black. can add an argument if I want to change.
-        self.v = defaultVelocity #default linear velocity
-        self.vx = 0 #velocity in x
-        self.vy = 0 #velocity in y
-        self.a = 10 #default linear acceleration
-        self.ax = 0 #acceleration in x
-        self.ay = 0 #acceleration in y
+
+        self.position = np.array([[x], [y]], dtype="float64")
+        self.a = np.array([[10], [0]], dtype="float64")
+        self.v = np.array([[defaultVelocity], [0]], dtype="float64")
+        self.path = path
 
     def move(self, dt, path):
-        #self.ay += self.ay * dt #not sure about these acceleration equations. are they right?
-        #self.ax = self.ax * dt #Car.check(self) #check collisions
-        self.vx += self.ax * dt
-        self.vy += self.ay * dt
-
-        #assumptions: Car is initially on the path. Given a velocity, now calculate changes in x and y.
+        self.v[0] += self.a[0] * dt  # x-direciton velocity
+        self.v[1] += self.a[1] * dt  # y-direction velocity
+        self.position[0] += self.v[0] * dt  # x-position
+        self.position[1] += self.v[1] * dt  # y-position
+        '''
         if path.__class__.__name__ == 'StraightRoad': #works. problem = car's velocity might not go along path. should change.
         #potential problem is if the car reaches the end of the road, the velocity still accelerates?
             #check if extension is beyond end of road.
@@ -40,6 +36,7 @@ class Car(object):
 
         elif path.__class__.__name__ == 'CircleRoad':
             a = 5
+        '''
     def check(self): #finish this later. need to work on path-tracking first.
         relativeDistanceCarInFront = 999
         relativeVelocityCarInFront = 999
@@ -57,5 +54,5 @@ class Car(object):
         #float ranging from 1--> 0. 1 = free to move. 0 = harsh break. 0.5 = start breaking, etc. need to research this. 
 
     def draw(self, screen):
-        pygame.draw.circle(screen, 'red', (int(self.x), int(self.y)), 25) #last number is radius
+        pygame.draw.circle(screen, 'red', (int(self.position[0]), int(self.position[1])), 25) #last number is radius
 
