@@ -6,28 +6,32 @@ import sys
 # Define Model Parameters:
 
 # Desired Velocity
-v0 = np.float32(30) #ms-1
+v0 = float(30) #ms-1
 # Minimum Spacing
-s0 = np.float32(1)
+s0 = float(2)
 # Desired Time Headway
-T = np.float32(1)
+T = float(1.5)
 # Max Acceleration
-a = np.float32(1)
+a = float(10)
 # Comfortable Breaking Deceleration (positive number)
-b = np.float32(1)
+b = float(10)
 # Exponent, usually set to 4.
 exponent = 4
-# Length of car, set to 1.
-length = 1
+# Length of car, set to 5.
+length = 5
 
 class Car(object):
     def __init__(self, identifier, x, y, defaultVelocity, path=None):
         self.identifier = identifier
-        self.color = (0,0,0) #black. can add an argument if I want to change.
+        self.color = (0, 0, 0) #black. can add an argument if I want to change.
         self.position = np.array([[x], [y]], dtype="float64")
-        self.a = np.array([[10], [0]], dtype="float64")
+        self.a = np.array([[0], [0]], dtype="float64")
         self.v = np.array([[defaultVelocity], [0]], dtype="float64")
         self.path = path
+
+        # Plotting elements:
+        self.accelerations = []
+
 
     def move(self, dt):
         self.v[0] += self.a[0] * dt  # x-direction velocity
@@ -38,12 +42,27 @@ class Car(object):
     def get_attributes(self):
         return [self.position, self.v, self.a]
 
-    def calculate_acceleration(self, v_alpha, v_alpha_previous, s_alpha):
-        dvdt = a(1 - (v_alpha / v0) ** 4 - ((s0 + v_alpha * T + (v_alpha * (v_alpha - v_alpha_previous)) / (
-                    2 * np.sqrt(a * b)) / s_alpha) ** 2))
+    def calculate_acceleration(self, v_alpha_front, x_front):
+        """
+        Function Calculate_acceleration ...
 
-        return dvdt
+        Parameters:
+                v_alpha_front (float): The velocity of the car in front of this car.
+                x_front: The x-coordinates of the car in front of this car.
+
+        """
+        s_alpha = x_front - self.position[0] - length  # X-position of car in front, minus this car's position,
+        # minus the length of the car in front.
+
+        v_alpha = self.v[0]
+        # Calculate alpha acceleration.
+        #a_alpha = 1
+
+        s_star = s0 + v_alpha * T + (v_alpha * (v_alpha - v_alpha_front)) / (2 * np.sqrt(a * b))
+        a_alpha = a * (1 - (v_alpha / v0) ** exponent - (s_star / s_alpha) ** 2)
+
+        self.a[0] = a_alpha
 
     def draw(self, screen):
-        pygame.draw.circle(screen, 'red', (int(self.position[0]), int(self.position[1])), 16) #last number is radius
+        pygame.draw.circle(screen, 'red', (int(self.position[0]), int(self.position[1])), 5) # last number is radius
 
