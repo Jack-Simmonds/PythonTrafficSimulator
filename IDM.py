@@ -6,23 +6,6 @@ from Car import Car
 
 WIDTH, HEIGHT = 800, 600
 
-# Define Model Parameters:
-
-# Desired Velocity
-v0 = np.float32(30) #ms-1
-# Minimum Spacing
-s0 = np.float32(1)
-# Desired Time Headway
-T = np.float32(1)
-# Max Accleration
-a = np.float32(1)
-# Comfortable Breaking Deceleration (positive number)
-b = np.float32(1)
-# Exponent, usually set to 4.
-exponent = 4
-# Length of car, set to 1.
-length = 1
-
 # Creating the system of cars:
 # Car 1: The first car, of which I will apply the ODE model to.
 Car1 = Car(1, 125, 300, 0)
@@ -33,11 +16,6 @@ Car2 = Car(2, 125, 300, 30)
 def find_s_alpha(x_alpha_previous, x_alpha):
     s_alpha = x_alpha_previous - x_alpha - length
     return s_alpha
-
-def acceleration(v_alpha, v_alpha_previous, s_alpha):
-    dvdt = a(1-(v_alpha/v0)**4 - ((s0 + v_alpha*T + (v_alpha * (v_alpha - v_alpha_previous))/(2*np.sqrt(a*b))/s_alpha)**2))
-
-    return dvdt
 
 
 # Set up the display
@@ -56,13 +34,16 @@ while True:
             sys.exit()
 
     #Sequence of movement, for 2 cars:
-    Car1.move()
-    attributes = []
-    '''
+    Car1.move(dt)
     attributes = Car1.get_attributes()
+    position = attributes[0]
+    velocity = attributes[1]
+    acceleration = attributes[2]
 
-    Car2.acceleration()
-    '''
+    Car2.calculate_acceleration()
+
+    Car1.draw(screen)
+    Car2.draw(screen)
 
     # Update the display
     pygame.display.flip()
