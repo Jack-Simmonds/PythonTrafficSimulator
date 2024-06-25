@@ -13,3 +13,5 @@ Ordinary differential equations, considered only in the x-direction:
 $\frac{dx_\alpha}{dt} = v_\alpha$
 
 $a_\alpha = \frac{dv_\alpha}{dt} = a\left(1 - \left(\frac{v_\alpha}{v_0}\right)^\delta - \frac{s^*(v_\alpha, \Delta v_\alpha)}{s_\alpha}^2\right)$
+
+where $s^*(v_\alpha, \Delta v_\alpha) = s_0 + v_\alpha T + \frac{v_\alpha \Delta v_\alpha}{2 \sqrt{ab}}$
