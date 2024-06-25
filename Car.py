@@ -61,10 +61,15 @@ class Car(object):
 
         self.a[0] = a_alpha
     def calculate_linear_path_distance(self, car_position, car_front_position):
-        return np.linalg.norm(np.array(car_position) - np.array(car_front_position))
+        return np.linalg.norm(np.array(car_position) - np.array(car_front_position)) #maybe I can remove np.array()?
 
-    def calculate_circular_path_distance(self):
-        
+    def calculate_circular_path_distance(self, car_position, car_front_position, circle_centre, radius):
+        # This find the arc length (S = r*theta) between two cars, for the path distance between two cars in a circular
+        # path.
+        # calculate angles for both cars, normalize to be in a good range (0--> 2pi?), calculate difference in angle,
+        # make sure the angle doesn't have errors for negative angle etc, find arc length S = r*theta, return.
+
+        return 5
 
     def calculate_acceleration2(self, v_front, position_front): #Creating a new function for 'distance' rather than x-direction.
         """
@@ -91,8 +96,9 @@ class Car(object):
         # Calculate v_alpha_front = ||v_alpha-1||
         v_alpha_front = np.sqrt((v_front[0])**2 + (v_front[1])**2)
         '''
+        #if self.path.
 
-        s_alpha =
+        #s_alpha =
 
         # Calculate alpha acceleration, where a_alpha = a_t, (tangential acceleration).
         s_star = s0 + v_alpha * T + (v_alpha * (v_alpha - v_alpha_front)) / (2 * np.sqrt(a * b))
