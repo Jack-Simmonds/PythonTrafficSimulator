@@ -32,3 +32,16 @@ $b$: Comfortable braking deceleration.
 $\delta$: The exponent value, here set to 4.
 
 ## Model Behavior:
+
+### Free road:
+
+On a free road, the model reaches $v_0$ at steady state (asymptotically). This is because the distance between cars ($s_\alpha$) is large, so essentially:
+$a_\alpha = \frac{dv_\alpha}{dt} = a\left(1 - \left(\frac{v_\alpha}{v_0}\right)^\delta \right)$
+
+As $v_\alpha$ --> $v_0$, $a_\alpha$ --> $0$.
+
+### High approaching rates:
+### Small differences:
+
+## End goal of model:
+The end goal of this model is to simulate large numbers of vehicles in different traffic systems by using path elements such as circles and straight roads. With this, simulation can optimise routes or convey traffic concepts such as [Traffic Waves](https://en.wikipedia.org/wiki/Traffic_wave).
