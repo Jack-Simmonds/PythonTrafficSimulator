@@ -1,5 +1,6 @@
 # PythonTrafficSimulator [in progress]
 Python Traffic Simulator implements the Intelligent Driver Model to simulate basic 2-dimensional traffic from a top-down perspective. 
+When using this repository, use the file "IDM.py" to access the simulation rather than "main.py" (temporary)
 
 ## Intelligent Driver Model:
 The intelligent driver model uses two ordinary differential equations to define the movement of each car in the system.
