@@ -32,7 +32,6 @@ class Car(object):
         # Plotting elements:
         self.accelerations = []
 
-
     def move(self, dt):
         self.v[0] += self.a[0] * dt  # x-direction velocity
         self.v[1] += self.a[1] * dt  # y-direction velocity
@@ -56,8 +55,46 @@ class Car(object):
 
         v_alpha = self.v[0]
         # Calculate alpha acceleration.
-        #a_alpha = 1
 
+        s_star = s0 + v_alpha * T + (v_alpha * (v_alpha - v_alpha_front)) / (2 * np.sqrt(a * b))
+        a_alpha = a * (1 - (v_alpha / v0) ** exponent - (s_star / s_alpha) ** 2)
+
+        self.a[0] = a_alpha
+    def calculate_linear_path_distance(self, car_position, car_front_position):
+        return np.linalg.norm(np.array(car_position) - np.array(car_front_position))
+
+    def calculate_circular_path_distance(self):
+        
+
+    def calculate_acceleration2(self, v_front, position_front): #Creating a new function for 'distance' rather than x-direction.
+        """
+
+        New parameters:
+        v_front, position_front.
+
+        Function Calculate_acceleration ...
+
+        Parameters:
+                v_alpha_front (float): The velocity of the car in front of this car.
+                x_front: The x-coordinates of the car in front of this car.
+
+        Assumptions:
+            Car shape is roughly circular. (This simplifies the alpha distance equation)
+        """
+        '''
+        s_alpha = np.sqrt(
+            (position_front[0] - self.position[0]) ** 2 + (position_front[1] - self.position[1]) ** 2) - length
+
+        # Calculate v_alpha = ||v||
+        v_alpha = np.sqrt((self.v[0])**2 + (self.v[1])**2)
+
+        # Calculate v_alpha_front = ||v_alpha-1||
+        v_alpha_front = np.sqrt((v_front[0])**2 + (v_front[1])**2)
+        '''
+
+        s_alpha =
+
+        # Calculate alpha acceleration, where a_alpha = a_t, (tangential acceleration).
         s_star = s0 + v_alpha * T + (v_alpha * (v_alpha - v_alpha_front)) / (2 * np.sqrt(a * b))
         a_alpha = a * (1 - (v_alpha / v0) ** exponent - (s_star / s_alpha) ** 2)
 

@@ -9,7 +9,7 @@ WIDTH, HEIGHT = 800, 600
 # Creating the system of cars:
 # Car 1: The first car, of which I will apply the ODE model to.
 Car1 = Car(1, 25, 300, 0)
-# Car 2: The car in front, set to have a steady velocity of 30.
+# Car 2: The car in front, set to have a steady velocity of 4.
 Car2 = Car(2, 200, 300, 4)
 
 length = 1
@@ -40,11 +40,11 @@ while True:
     position = attributes[0]
     velocity = attributes[1]
     acceleration = attributes[2]
-    #print(f'Attributes are: position {position}, velocity {velocity}, and acceleration {acceleration}')
+    # print(f'Attributes are: position {position}, velocity {velocity}, and acceleration {acceleration}')
 
-    v_alpha_front = velocity[0]  # Assign v_(alpha - 1) for the behind car.
+    # v_alpha_front = velocity[0]  # Assign v_(alpha - 1) for the behind car, x-direction.
 
-    Car1.calculate_acceleration(v_alpha_front, position[0])
+    Car1.calculate_acceleration(velocity, position)
     Car1.move(dt)
     print(Car1.a[0], Car1.v[0], Car1.position[0])
 
