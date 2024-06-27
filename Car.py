@@ -69,33 +69,61 @@ class Car(object):
         # calculate angles for both cars, normalize to be in a good range (0--> 2pi?), calculate difference in angle,
         # make sure the angle doesn't have errors for negative angle etc, find arc length S = r*theta, return.
 
-        return 5
+        """
+        Parameters:
+            car_position:
+            car_front_position:
+            circle_centre:
+            radius:
+
+        Returns:
+            distance (float): The distance between the two cars.
+        Preconditions:
+            Assume that both cars are positioned on the circle.
+        """
+
+        behind_car_angle = np.arctan2(car_position[1] - circle_centre[1], car_position[0] - circle_centre[0])
+        front_car_angle = np.arctan2(car_front_position[1] - circle_centre[1], car_front_position[0] - circle_centre[0])
+        '''
+        if behind_car_angle < 0:
+            behind_car_angle = 
+        '''
+
+        angle = front_car_angle - behind_car_angle
+        distance = radius * angle
+
+        print(f'Front car angle = {front_car_angle}, behind_car_angle = {behind_car_angle}, delta angle = {angle}, '
+              f'distance = {distance}.')
+        return distance
 
     def calculate_acceleration2(self, v_front, position_front): #Creating a new function for 'distance' rather than x-direction.
         """
-
-        New parameters:
-        v_front, position_front.
-
         Function Calculate_acceleration ...
 
         Parameters:
-                v_alpha_front (float): The velocity of the car in front of this car.
-                x_front: The x-coordinates of the car in front of this car.
+            v_front (2D numpy float array): The velocity of the car in front of this car.
+            position_front (2D numpy float array): The x-coordinates of the car in front of this car.
+        Returns:
+            a_alpha (float): The tangential acceleration of the vehicle.
 
         Assumptions:
             Car shape is roughly circular. (This simplifies the alpha distance equation)
+            Given this, we can assume that for a circular path, the arc distance minus the length of the car is equal to
+            s_alpha. This is not completely accurate, but is a fair assumption given the change in distance is minimal.
+            We assume that the velocity of the car in tangential to the path, which should hold for constant paths.
+                Note: Consider this for when the car in front has a different path to the car behind?
         """
-        '''
-        s_alpha = np.sqrt(
-            (position_front[0] - self.position[0]) ** 2 + (position_front[1] - self.position[1]) ** 2) - length
 
-        # Calculate v_alpha = ||v||
+        if self.path.__class__.__name == "StraightRoad":
+        # s_alpha = np.sqrt(
+            # (position_front[0] - self.position[0]) ** 2 + (position_front[1] - self.position[1]) ** 2) - length
+
+        # Calculate v_alpha = ||v|| = v_tangential
         v_alpha = np.sqrt((self.v[0])**2 + (self.v[1])**2)
 
-        # Calculate v_alpha_front = ||v_alpha-1||
+        # Calculate v_alpha_front = ||v_alpha-1|| = v_alpha-1_tangential
         v_alpha_front = np.sqrt((v_front[0])**2 + (v_front[1])**2)
-        '''
+
         #if self.path.
 
         #s_alpha =
