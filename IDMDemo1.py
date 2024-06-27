@@ -26,9 +26,16 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Simple Traffic System')
 clock = pygame.time.Clock()
 
+time = [] #Plotting
+cumulative_time = 0
 # Tick system:
 while True:
     dt = clock.tick(60) / 1000.0
+    cumulative_time += dt
+    time.append(cumulative_time)
+
+    if cumulative_time > 5:
+        break
 
     screen.fill('WHITE')
 
@@ -60,6 +67,21 @@ while True:
     # Control the frame rate --> 60fps.
     pygame.time.Clock().tick(60)
 
+
+#Plotting:
+time.remove(time[-1])
+plt.figure()
+
+x = np.linspace(0,1,len(time))
+
+#plt.plot(x, time)
+plt.plot(time, Car1.accelerations, time, Car1.velocities, time, Car1.x_positions)
+print(Car1.x_positions)
+plt.legend(["Acceleration","Velocity","Position"])
+plt.title("Attributes of Car 1 vs. Time when approaching a car travelling at constant speed.")
+plt.xlabel("Time in seconds")
+plt.ylabel("Attributes of Car 1")
+plt.show()
 
 
 

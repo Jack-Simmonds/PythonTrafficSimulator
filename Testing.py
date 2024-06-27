@@ -13,4 +13,13 @@ def t_circular_path_distance():
 
     return
 
+def t_calculate_linear_path_distance():
+    Car1 = Car(1, 25, 300, 0)
+    position1 = np.array([[10],[0]])
+    position2 = np.array([[15], [20]])
+    distance = Car1.calculate_linear_path_distance(position1, position2)
+    exact = np.sqrt(425)
+    assert(distance == exact)
+
 t_circular_path_distance()
+#t_calculate_linear_path_distance()

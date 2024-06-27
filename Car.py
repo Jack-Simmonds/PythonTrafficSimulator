@@ -31,6 +31,8 @@ class Car(object):
 
         # Plotting elements:
         self.accelerations = []
+        self.velocities = []
+        self.x_positions = []
 
     def move(self, dt):
         self.v[0] += self.a[0] * dt  # x-direction velocity
@@ -60,8 +62,9 @@ class Car(object):
         a_alpha = a * (1 - (v_alpha / v0) ** exponent - (s_star / s_alpha) ** 2)
 
         self.a[0] = a_alpha
+
     def calculate_linear_path_distance(self, car_position, car_front_position):
-        return np.linalg.norm(np.array(car_position) - np.array(car_front_position)) #maybe I can remove np.array()?
+        return np.linalg.norm(car_position - car_front_position)
 
     def calculate_circular_path_distance(self, car_position, car_front_position, circle_centre, radius):
         # This find the arc length (S = r*theta) between two cars, for the path distance between two cars in a circular
@@ -113,10 +116,9 @@ class Car(object):
             We assume that the velocity of the car in tangential to the path, which should hold for constant paths.
                 Note: Consider this for when the car in front has a different path to the car behind?
         """
-
-        if self.path.__class__.__name == "StraightRoad":
+        if self.path.__class__.__name__ == "StraightRoad":
             s_alpha = self.calculate_linear_path_distance(self.position, position_front) - length
-        elif self.path.__class__.__name == "StraightRoad":
+        elif self.path.__class__.__name__ == "StraightRoad":
             s_alpha = self.calculate_circular_path_distance(self.position, position_front) - length
 
         # Calculate v_alpha = ||v|| = v_tangential
@@ -129,7 +131,15 @@ class Car(object):
         s_star = s0 + v_alpha * T + (v_alpha * (v_alpha - v_alpha_front)) / (2 * np.sqrt(a * b))
         a_alpha = a * (1 - (v_alpha / v0) ** exponent - (s_star / s_alpha) ** 2)
 
-        return a_alpha #where a_alpha is now the tangential acceleration.
+        self.a[0] = a_alpha # Temporary, only doing for now. in reality more complex.
+
+        # Plotting:
+        self.accelerations.append(a_alpha)
+        self.velocities.append(v_alpha)
+        x = float(self.position[0])
+        self.x_positions.append(x)
+
+        return a_alpha # Where a_alpha is now the tangential acceleration.
 
     def draw(self, screen):
         pygame.draw.circle(screen, 'red', (int(self.position[0]), int(self.position[1])), 5) # last number is radius
