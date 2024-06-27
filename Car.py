@@ -41,7 +41,7 @@ class Car(object):
     def get_attributes(self):
         return [self.position, self.v, self.a]
 
-    def calculate_acceleration(self, v_alpha_front, x_front):
+    def calculate_acceleration(self, v_alpha_front, x_front):  # This is the 1D version, currently not being used.
         """
         Function Calculate_acceleration ...
 
@@ -115,8 +115,9 @@ class Car(object):
         """
 
         if self.path.__class__.__name == "StraightRoad":
-        # s_alpha = np.sqrt(
-            # (position_front[0] - self.position[0]) ** 2 + (position_front[1] - self.position[1]) ** 2) - length
+            s_alpha = self.calculate_linear_path_distance(self.position, position_front) - length
+        elif self.path.__class__.__name == "StraightRoad":
+            s_alpha = self.calculate_circular_path_distance(self.position, position_front) - length
 
         # Calculate v_alpha = ||v|| = v_tangential
         v_alpha = np.sqrt((self.v[0])**2 + (self.v[1])**2)
@@ -124,15 +125,11 @@ class Car(object):
         # Calculate v_alpha_front = ||v_alpha-1|| = v_alpha-1_tangential
         v_alpha_front = np.sqrt((v_front[0])**2 + (v_front[1])**2)
 
-        #if self.path.
-
-        #s_alpha =
-
         # Calculate alpha acceleration, where a_alpha = a_t, (tangential acceleration).
         s_star = s0 + v_alpha * T + (v_alpha * (v_alpha - v_alpha_front)) / (2 * np.sqrt(a * b))
         a_alpha = a * (1 - (v_alpha / v0) ** exponent - (s_star / s_alpha) ** 2)
 
-        self.a[0] = a_alpha
+        return a_alpha #where a_alpha is now the tangential acceleration.
 
     def draw(self, screen):
         pygame.draw.circle(screen, 'red', (int(self.position[0]), int(self.position[1])), 5) # last number is radius

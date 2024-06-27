@@ -3,14 +3,19 @@ import pygame
 import sys
 import scipy
 from Car import Car
+from StraightRoad import StraightRoad
 
 WIDTH, HEIGHT = 800, 600
 
+# Creating the system of roads:
+# Road 1:
+Road1 = StraightRoad(50, 300, 350, 300, 15)
+
 # Creating the system of cars:
 # Car 1: The first car, of which I will apply the IDM model to.
-Car1 = Car(1, 25, 300, 0)
+Car1 = Car(1, 25, 300, 0, path=Road1)
 # Car 2: The car in front, set to have a steady velocity of 4.
-Car2 = Car(2, 200, 300, 4)
+Car2 = Car(2, 200, 300, 4, path=Road1)
 
 length = 1
 
@@ -32,14 +37,14 @@ while True:
 
     # Sequence of movement for 2 cars:
     Car2.move(dt)
-    attributes = Car2.get_attributes()
+    attributes = Car2.get_attributes() # Finding attributes of the car in front.
     position = attributes[0]
     velocity = attributes[1]
     acceleration = attributes[2]
 
     # v_alpha_front = velocity[0]  # Assign v_(alpha - 1) for the behind car, x-direction.
 
-    Car1.calculate_acceleration(velocity, position) #Can be put inside move loop along the line.
+    Car1.calculate_acceleration2(velocity, position) #Can be put inside move loop along the line.
     Car1.move(dt)
     # print(Car1.a[0], Car1.v[0], Car1.position[0])
 
