@@ -3,7 +3,7 @@ import pygame
 import sys
 
 
-# Define Model Parameters:
+# Define Model Parameters: (Treating units as standard SI units, 1 metre correlating to 1 pixel)
 
 # Desired Velocity
 v0 = float(30) #ms-1

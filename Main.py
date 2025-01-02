@@ -8,7 +8,7 @@ from StraightRoad import StraightRoad
 from CircleRoad import CircleRoad
 
 #constants
-WIDTH, HEIGHT = 800, 600
+WIDTH, HEIGHT = 1280, 720
 
 #Model Parameters:
 desired_velocity = 30 #ms-1
@@ -22,7 +22,7 @@ pygame.init()
 #startx, starty, endx, endy, width
 Road1 = StraightRoad(50, 300, 350, 300, 15)
 #radius, centerofcircle_x, centerofcircle_y, thickness.
-Road2 = CircleRoad(50, 350, 300, 15)
+Road2 = CircleRoad(50, (350,300), 15)
 roads = [Road1, Road2]
 
 

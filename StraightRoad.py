@@ -15,13 +15,7 @@ class StraightRoad(object):
         self.dx = self.end_x - self.start_x # probably doesn't need to be self.dx, rather just dx. can change later.
         self.dy = self.end_y - self.start_y
 
-        if self.dx == 0:  # Prevent divide by zero error.
-            if self.dy > 0:
-                self.angle = np.pi/2
-            else:
-                self.angle = -np.pi/2
-        else:
-            self.angle = np.arctan(self.dy/self.dx)
+        self.angle = np.arctan(self.dy/self.dx) if self.dx != 0 else np.pi/2 if self.dy > 0 else -np.pi/2 
 
         # Calculate rectangle parameters
         self.rect_width = width
