@@ -71,7 +71,6 @@ while True:
 #Plotting:
 time.remove(time[-1])
 plt.figure()
-
 x = np.linspace(0,1,len(time))
 
 #plt.plot(x, time)

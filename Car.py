@@ -87,10 +87,6 @@ class Car(object):
 
         behind_car_angle = np.arctan2(car_position[1] - circle_centre[1], car_position[0] - circle_centre[0])
         front_car_angle = np.arctan2(car_front_position[1] - circle_centre[1], car_front_position[0] - circle_centre[0])
-        '''
-        if behind_car_angle < 0:
-            behind_car_angle = 
-        '''
 
         angle = front_car_angle - behind_car_angle
         distance = radius * angle
@@ -113,12 +109,12 @@ class Car(object):
             Car shape is roughly circular. (This simplifies the alpha distance equation)
             Given this, we can assume that for a circular path, the arc distance minus the length of the car is equal to
             s_alpha. This is not completely accurate, but is a fair assumption given the change in distance is minimal.
-            We assume that the velocity of the car in tangential to the path, which should hold for constant paths.
+            We assume that the velocity of the car is tangential to the path, which should hold for constant paths.
                 Note: Consider this for when the car in front has a different path to the car behind?
         """
         if self.path.__class__.__name__ == "StraightRoad":
             s_alpha = self.calculate_linear_path_distance(self.position, position_front) - length
-        elif self.path.__class__.__name__ == "StraightRoad":
+        elif self.path.__class__.__name__ == "CircleRoad": #commit: StraightRoad --> CircleRoad
             s_alpha = self.calculate_circular_path_distance(self.position, position_front) - length
 
         # Calculate v_alpha = ||v|| = v_tangential
