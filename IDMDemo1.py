@@ -1,3 +1,8 @@
+'''
+This file shows a simple demo of two cars driving down a straight road. The front-car has a steady velocity of 4, with no
+IDM-model implementation. The behind-car has an IDM-model implementation, which plots its key parameters after simulation. 
+'''
+
 import numpy as np
 import pygame
 import sys
