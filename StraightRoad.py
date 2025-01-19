@@ -1,3 +1,6 @@
+'''
+This file holds the StraightRoad class.
+'''
 import numpy as np
 import pygame
 import sys

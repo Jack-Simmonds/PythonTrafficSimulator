@@ -1,3 +1,6 @@
+'''
+This file holds the CircleRoad class.
+'''
 import numpy as np
 import pygame
 import sys
