@@ -24,8 +24,6 @@ Car1 = Car(1, 25, 300, 0, path=Road1)
 # Car 2: The car in front, set to have a steady velocity of 4.
 Car2 = Car(2, 200, 300, 4, path=Road1)
 
-length = 1
-
 # Set up the display
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Simple Traffic System')

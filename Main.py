@@ -1,3 +1,7 @@
+'''
+This is the main testing file.
+'''
+
 import numpy as np
 import pygame
 import sys
@@ -10,13 +14,6 @@ from CircleRoad import CircleRoad
 #constants
 WIDTH, HEIGHT = 1280, 720
 
-#Model Parameters:
-desired_velocity = 30 #ms-1
-minimum_spacing = 1
-desired_time_headway = 1
-max_acceleration = 1
-comfortable_breaking_acceleration = 1
-
 pygame.init()
 
 #startx, starty, endx, endy, width
@@ -26,6 +23,7 @@ Road2 = CircleRoad(50, (350,300), 15)
 roads = [Road1, Road2]
 
 
+desired_velocity = 30 #ms-1
 Car1 = Car(1, 25, 300, desired_velocity, path=Road1)
 Car2 = Car(2, 125, 300, desired_velocity, path=Road1)
 cars = [Car1, Car2]
