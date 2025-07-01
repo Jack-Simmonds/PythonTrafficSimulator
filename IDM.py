@@ -7,8 +7,8 @@ import pygame
 import sys
 import matplotlib.pyplot as plt
 import scipy
-from Car import Car
-from StraightRoad import StraightRoad
+from Classes.Car import Car
+from Classes.StraightRoad import StraightRoad
 
 WIDTH, HEIGHT = 800, 600
 
@@ -50,7 +50,6 @@ while True:
     acceleration = attributes[2]
 
     # v_alpha_front = velocity[0]  # Assign v_(alpha - 1) for the behind car, x-direction.
-
     Car1.calculate_acceleration2(velocity, position) #Can be put inside move loop along the line.
     Car1.move(dt)
 

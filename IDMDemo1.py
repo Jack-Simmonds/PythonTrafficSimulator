@@ -8,8 +8,8 @@ import pygame
 import sys
 import matplotlib.pyplot as plt
 import scipy
-from Car import Car
-from StraightRoad import StraightRoad
+from Classes.Car import Car
+from Classes.StraightRoad import StraightRoad
 
 WIDTH, HEIGHT = 800, 600
 
