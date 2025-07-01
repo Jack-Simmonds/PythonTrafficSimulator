@@ -1,6 +1,6 @@
 # PythonTrafficSimulator [in progress]
 Python Traffic Simulator implements the Intelligent Driver Model to simulate basic 2-dimensional traffic from a top-down perspective. 
-When using this repository, use the file "IDM.py" to access the simulation rather than "main.py" (temporary)
+When using this repository, use the file "IDMDemo1.py" for a short demonstration of the simulation.
 
 ## Intelligent Driver Model:
 The intelligent driver model uses two ordinary differential equations to define the movement of each car in the system.
@@ -31,14 +31,14 @@ $b$: Comfortable braking deceleration.
 
 $\delta$: The exponent value, here set to 4.
 
-## Model Behavior:
+## Model Behaviour:
 
 ### Free road:
 
 On a free road, the model reaches $v_0$ at steady state (asymptotically). This is because the distance between cars ($s_\alpha$) is large, so essentially:
 $a_\alpha = \frac{dv_\alpha}{dt} = a\left(1 - \left(\frac{v_\alpha}{v_0}\right)^\delta \right)$
 
-As $v_\alpha$ --> $v_0$, $a_\alpha$ --> $0$.
+As $v_\alpha$ $\rightarrow$ $v_0$, $a_\alpha$ $\rightarrow$ $0$.
 
 ### High approaching rates:
 ### Small differences:
