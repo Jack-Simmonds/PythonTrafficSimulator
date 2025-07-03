@@ -16,6 +16,8 @@ WIDTH, HEIGHT = 800, 600
 Road1 = StraightRoad(50, 300, 350, 300, 15)
 roads = [Road1]
 
+pygame.init()
+
 # Car 1:
 Car1 = Car(ID=1, x=25, y=300, defaultVelocity=0, path=Road1)
 # Car 2: 
@@ -32,6 +34,7 @@ idm_cars = [Car3, Car2, Car1]
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Simple Traffic System')
 clock = pygame.time.Clock()
+font = pygame.font.SysFont("Arial", 10)
 
 while True:
     dt = clock.tick(60) / 1000.0
@@ -59,8 +62,10 @@ while True:
     for car in idm_cars:
         car.draw(screen)
     
+    fps = clock.get_fps()
+    pygame.time.Clock().tick(60)
+    fps_text = font.render(f"FPS: {fps:.2f}", True, pygame.Color('black'))
+    screen.blit(fps_text, (WIDTH - fps_text.get_width() - 10, 10))
+
     # Update the display
     pygame.display.flip()
-    # Control the frame rate --> 60fps.
-    pygame.time.Clock().tick(60)
-
