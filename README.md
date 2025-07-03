@@ -44,8 +44,9 @@ As $v_\alpha$ $\rightarrow$ $v_0$, $a_\alpha$ $\rightarrow$ $0$.
 
 At high approaching rates, there is a large difference in velocity. The initial terms, $\left(1 - \left(\frac{v_\alpha}{v_0}\right)^\delta \right)$, lose relevance, and instead the $s^*(v_\alpha, \Delta v_\alpha) = s_0 + v_\alpha T + \frac{v_\alpha \Delta v_\alpha}{2 \sqrt{ab}}$ term dominates. (Due to the squared difference in velocity). We observe that the driving behaviour does not want to break much harder than the comfortable breaking deceleration $b$, but deceleration strongly relies on the difference in velocity to minimise the chance of collision. 
 
+### Small differences in distances between cars:
 
-### Small differences:
+Assuming that $v_\alpha \approx v_0$, we observe that the s* dominates. The acceleration becomes $-a \frac{(s_0 + v_\alpha T)^2}{s^2_\alpha}$. This is considered to be a 'simple repulsive force', that expands the small distance to an equilibrium net distance reliant on the minimum gap between cars.
 
 ## End goal of model:
 The end goal of this model is to simulate large numbers of vehicles in different traffic systems by using path elements such as circles and straight roads. With this, simulation can optimise routes or convey traffic concepts such as [Traffic Waves](https://en.wikipedia.org/wiki/Traffic_wave).
