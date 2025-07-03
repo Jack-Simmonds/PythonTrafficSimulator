@@ -23,8 +23,8 @@ exponent = 4
 length = 5
 
 class Car(object):
-    def __init__(self, identifier, x, y, defaultVelocity, path=None):
-        self.identifier = identifier
+    def __init__(self, ID, x, y, defaultVelocity, path=None):
+        self.ID = ID
         self.color = (0, 0, 0) #black. can add an argument if I want to change.
         self.position = np.array([[x], [y]], dtype="float64")
         self.a = np.array([[0], [0]], dtype="float64")
