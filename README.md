@@ -9,11 +9,11 @@ In my project, these ODES are solved using the 3rd-order Range-Kutta method.
 
 (Currently solved using a 1st-order euler method with h = dt $\approx$ 1/60)
 
-Ordinary differential equations that characterise the movement of the vehicles when considered only in one direction:
+Ordinary differential equations that characterise the movement of a vehicle $\alpha$ when considered only in one direction:
 
 $\frac{dx_\alpha}{dt} = v_\alpha$
 
-$a_\alpha = \frac{dv_\alpha}{dt} = a\left(1 - \left(\frac{v_\alpha}{v_0}\right)^\delta - \frac{s^*(v_\alpha, \Delta v_\alpha)}{s_\alpha}^2\right)$
+$a_\alpha = \frac{dv_\alpha}{dt} = a\left(1 - \left(\frac{v_\alpha}{v_0}\right)^\delta - (\frac{s^*(v_\alpha, \Delta v_\alpha)}{s_\alpha})^2\right)$
 
 where $s^*(v_\alpha, \Delta v_\alpha) = s_0 + v_\alpha T + \frac{v_\alpha \Delta v_\alpha}{2 \sqrt{ab}}$
 
@@ -41,6 +41,10 @@ $a_\alpha = \frac{dv_\alpha}{dt} = a\left(1 - \left(\frac{v_\alpha}{v_0}\right)^
 As $v_\alpha$ $\rightarrow$ $v_0$, $a_\alpha$ $\rightarrow$ $0$.
 
 ### High approaching rates:
+
+At high approaching rates, there is a large difference in velocity. The initial terms, $\left(1 - \left(\frac{v_\alpha}{v_0}\right)^\delta \right)$, lose relevance, and instead the $s^*(v_\alpha, \Delta v_\alpha) = s_0 + v_\alpha T + \frac{v_\alpha \Delta v_\alpha}{2 \sqrt{ab}}$ term dominates. (Due to the squared difference in velocity). We observe that the driving behaviour does not want to break much harder than the comfortable breaking deceleration $b$, but deceleration strongly relies on the difference in velocity to minimise the chance of collision. 
+
+
 ### Small differences:
 
 ## End goal of model:
