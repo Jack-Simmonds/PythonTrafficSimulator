@@ -48,7 +48,6 @@ class Car(object):
     def calculate_acceleration(self, v_alpha_front, x_front):  # This is the 1D version, currently not being used.
         """
         Function Calculate_acceleration ...
-
         Parameters:
                 v_alpha_front (float): The velocity of the car in front of this car.
                 x_front: The x-coordinates of the car in front of this car.
@@ -100,7 +99,6 @@ class Car(object):
     def calculate_acceleration2(self, v_front, position_front): #Creating a new function for 'distance' rather than x-direction.
         """
         Function Calculate_acceleration ...
-
         Parameters:
             v_front (2D numpy float array): The velocity of the car in front of this car.
             position_front (2D numpy float array): The x-coordinates of the car in front of this car.
