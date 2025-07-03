@@ -5,25 +5,6 @@ import numpy as np
 import pygame
 import sys
 
-'''
-class CircleRoad(object):
-    def __init__(self, radius, position, thickness):
-        self.radius = radius
-        self.position = position  # 2D numpy array.
-        self.thickness = thickness
-
-        self.topleft_x = self.position[0] - self.radius
-        self.topleft_y = self.position[1] - self.radius
-
-    def draw(self, screen): # Rendering using pygame.
-        pygame.draw.arc(screen, 'black', [self.topleft_x, self.topleft_y + self.radius - self.thickness//2,
-                                          self.radius*2, self.radius*2], 0, np.pi/2, self.thickness)
-'''
-
-import numpy as np
-import pygame
-
-
 class CircleRoad:
     def __init__(self, radius, position, thickness):
         self.radius = radius
@@ -31,13 +12,13 @@ class CircleRoad:
         self.thickness = thickness
 
     def draw(self, screen):
-        num_segments = 3000  # Number of segments for smoothness
-        angle_step = 2 * np.pi / num_segments
+        num_segments = 3000  #Number of segments for smoothness
+        angle_step = 2 * np.pi / num_segments # change this for how much the segment is.
 
         outer_points = []
         inner_points = []
 
-        for i in range(num_segments + 1):  # +1 to close the shape
+        for i in range(num_segments + 1):  #+1 to close the shape
             angle = i * angle_step
             outer_points.append((
                 self.position[0] + self.radius * np.cos(angle),
