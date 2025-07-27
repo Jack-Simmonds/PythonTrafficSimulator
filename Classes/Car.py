@@ -115,7 +115,7 @@ class Car(object):
         if self.path.__class__.__name__ == "StraightRoad":
             s_alpha = self.calculate_linear_path_distance(self.position, position_front) - length
         elif self.path.__class__.__name__ == "CircleRoad": #commit: StraightRoad --> CircleRoad
-            s_alpha = self.calculate_circular_path_distance(self.position, position_front) - length
+            s_alpha = self.calculate_linear_path_distance(self.position, position_front) - length #change here
 
         # Calculate v_alpha = ||v|| = v_tangential
         v_alpha = np.sqrt((self.v[0])**2 + (self.v[1])**2)

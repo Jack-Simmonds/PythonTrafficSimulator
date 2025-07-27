@@ -14,19 +14,19 @@ from StraightRoad import StraightRoad
 from CircleRoad import CircleRoad
 
 WIDTH, HEIGHT = 800, 600
-Road1 = CircleRoad(radius=100, position=(300,300),thickness=20)
+Road1 = CircleRoad(radius=200, position=(400,300),thickness=20)
 roads = [Road1]
 
 pygame.init()
 
 # Car 1:
-Car1 = Car(ID=1, x=25, y=300, defaultVelocity=0, path=Road1)
+Car1 = Car(ID=1, x=600, y=300, defaultVelocity=0, path=Road1)
 # Car 2: 
-Car2 = Car(ID=2, x=40, y=300, defaultVelocity=0, path=Road1)
+Car2 = Car(ID=2, x=400, y=100, defaultVelocity=0, path=Road1)
 # Car 3: 
-Car3 = Car(ID=3, x=55, y=300, defaultVelocity=0, path=Road1)
-# Car 4: The car in front, set to have a steady velocity of 20.
-Car4 = Car(ID=4, x=70, y=300, defaultVelocity=20, path=Road1)
+Car3 = Car(ID=3, x=200, y=300, defaultVelocity=0, path=Road1)
+# Car 4: The car in front, set to have a steady velocity of 50.
+Car4 = Car(ID=4, x=400, y=500, defaultVelocity=50, path=Road1)
 
 idm_cars = [Car3, Car2, Car1]
 
