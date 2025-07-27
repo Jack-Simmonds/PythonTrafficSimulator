@@ -58,7 +58,6 @@ while True:
         car.move(dt)
         position,velocity,acceleration = car.get_attributes()
 
-    # v_alpha_front = velocity[0]  # Assign v_(alpha - 1) for the behind car, x-direction.
     Car4.draw(screen)
     for car in idm_cars:
         car.draw(screen)

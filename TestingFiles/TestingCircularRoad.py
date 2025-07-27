@@ -25,8 +25,9 @@ Car1 = Car(ID=1, x=25, y=300, defaultVelocity=0, path=Road1)
 Car2 = Car(ID=2, x=40, y=300, defaultVelocity=0, path=Road1)
 # Car 3: 
 Car3 = Car(ID=3, x=55, y=300, defaultVelocity=0, path=Road1)
-# Car 4: The car in front, set to have a steady velocity of 50.
+# Car 4: The car in front, set to have a steady velocity of 20.
 Car4 = Car(ID=4, x=70, y=300, defaultVelocity=20, path=Road1)
+
 idm_cars = [Car3, Car2, Car1]
 
 #ABOVE: Car4 needs to have a sudden deceleration created.
