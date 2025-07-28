@@ -53,4 +53,4 @@ The end goal of this model is to simulate large numbers of vehicles in different
 
 ## Results:
 ### 1D Behaviour when a car with the applied IDM behaviour approaches a car travelling at a constant speed:
-![IDMDemo1Graph](images/IDMDemoGraph.png)
+![IDMDemo1Graph](Images/IDMDemoGraph.png)
