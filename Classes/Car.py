@@ -74,6 +74,7 @@ class Car(object):
         elif self.path.__class__.__name__ == "CircleRoad":
             return self.path.heading_at(self.position)
 
+#Unused:
     def calculate_circular_path_distance(self, car_position, car_front_position, circle_centre, radius):
         # This finds the arc length (S = r*theta) between two cars, for the path distance between two cars in a circular
         # path.
@@ -144,8 +145,40 @@ class Car(object):
 
         return a_alpha # Where a_alpha is now the tangential acceleration.
 
+    def return_car(self, ID):
+        """
+        Returns the car with the given ID.
+        """
+        if self.ID == ID:
+            return self
+        else:
+            return None
+
+    def find_lead_vehicle(self):
+        # Placeholder, just for a circular path with predefined car leads:
+        if self.ID == 4:
+            return self.return_car(1) # 1 leads 4.
+        else:
+            lead = self.return_car(self.ID + 1)  # Assuming the next car in the list is the lead vehicle.
+        return lead
+    
     def calculate_acceleration3(self, v_front, position_front):
-        a=2 #placeholder
+        heading = self.heading()
+        v_self = np.dot(self.v, heading)
+        lead, s_alpha = self.find_lead_vehicle()
+        if lead is not None:
+            v_front = np.dot(lead.v, heading)
+            delta_v = v_self - v_front
+        else:
+            delta_v = 0.0
+            s_alpha = np.inf
+
+        s_star = s0 + v_self * T + (v_self * delta_v) / (2 * np.sqrt(a * b))
+
+        acc = a * (1 - (v_self / v0) ** exponent - (s_star / s_alpha) ** 2)
+        acc = np.clip(acc, - b, a)
+        return acc * heading
+
         
 
     def draw(self, screen):

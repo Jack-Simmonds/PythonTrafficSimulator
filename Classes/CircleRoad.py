@@ -6,18 +6,19 @@ import pygame
 import sys
 
 class CircleRoad:
-    def __init__(self, radius, position, thickness):
+    def __init__(self, radius, centre, thickness):
         self.radius = radius
-        self.position = position
+        self.centre = np.array(centre)
         self.thickness = thickness
 
     def project_to_path(self, position):
-        rel_pos = position - self.center
+        rel_pos = position - self.centre #self.position is the centre of the circle.
         direction = rel_pos / np.linalg.norm(rel_pos) #Normalise
         return self.center + direction * self.radius
 
     def heading_at(self, position):
-        rel = position - self.center
+        position = np.array(position)
+        rel = position - self.centre
         tangent = np.array([-rel[1], rel[0]])
         return tangent / np.linalg.norm(tangent) #Normalise
 
@@ -31,12 +32,12 @@ class CircleRoad:
         for i in range(num_segments + 1):  #+1 to close the shape
             angle = i * angle_step
             outer_points.append((
-                self.position[0] + self.radius * np.cos(angle),
-                self.position[1] + self.radius * np.sin(angle)
+                self.centre[0] + self.radius * np.cos(angle),
+                self.centre[1] + self.radius * np.sin(angle)
             ))
             inner_points.append((
-                self.position[0] + (self.radius - self.thickness) * np.cos(angle),
-                self.position[1] + (self.radius - self.thickness) * np.sin(angle)
+                self.centre[0] + (self.radius - self.thickness) * np.cos(angle),
+                self.centre[1] + (self.radius - self.thickness) * np.sin(angle)
             ))
 
         arc_points = outer_points + inner_points[::-1]

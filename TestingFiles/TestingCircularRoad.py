@@ -14,7 +14,7 @@ from StraightRoad import StraightRoad
 from CircleRoad import CircleRoad
 
 WIDTH, HEIGHT = 800, 600
-Road1 = CircleRoad(radius=200, position=(400,300),thickness=20)
+Road1 = CircleRoad(radius=200, centre=(400,300),thickness=20)
 roads = [Road1]
 
 pygame.init()
@@ -55,7 +55,7 @@ while True:
     Car4.move(dt)
 
     for car in idm_cars: #starting with car #3.
-        car.calculate_acceleration2(velocity, position)    
+        car.calculate_acceleration3(velocity, position)    
         car.move(dt)
         position,velocity,acceleration = car.get_attributes()
 
@@ -69,7 +69,7 @@ while True:
     fps_text = font.render(f"FPS: {fps:.2f}", True, pygame.Color('black'))
     screen.blit(fps_text, (WIDTH - fps_text.get_width() - 10, 10))
 
-    print(Car4.heading())
+    #print(Car4.heading())
 
     # Update the display
     pygame.display.flip()
