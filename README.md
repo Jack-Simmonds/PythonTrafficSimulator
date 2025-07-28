@@ -50,3 +50,7 @@ Assuming that $v_\alpha \approx v_0$, we observe that the s* dominates. The acce
 
 ## End goal of model:
 The end goal of this model is to simulate large numbers of vehicles in different traffic systems by using path elements such as circles and straight roads. With this, simulation can optimise routes or convey traffic concepts such as [Traffic Waves](https://en.wikipedia.org/wiki/Traffic_wave).
+
+## Results:
+### 1D Behaviour when a car with the applied IDM behaviour approaches a car travelling at a constant speed:
+![IDMDemo1Graph](images/IDMDemoGraph.png)
