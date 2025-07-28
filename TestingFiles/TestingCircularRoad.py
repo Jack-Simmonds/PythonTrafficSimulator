@@ -69,5 +69,7 @@ while True:
     fps_text = font.render(f"FPS: {fps:.2f}", True, pygame.Color('black'))
     screen.blit(fps_text, (WIDTH - fps_text.get_width() - 10, 10))
 
+    print(Car4.heading())
+
     # Update the display
     pygame.display.flip()

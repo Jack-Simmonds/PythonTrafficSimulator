@@ -11,6 +11,16 @@ class CircleRoad:
         self.position = position
         self.thickness = thickness
 
+    def project_to_path(self, position):
+        rel_pos = position - self.center
+        direction = rel_pos / np.linalg.norm(rel_pos) #Normalise
+        return self.center + direction * self.radius
+
+    def heading_at(self, position):
+        rel = position - self.center
+        tangent = np.array([-rel[1], rel[0]])
+        return tangent / np.linalg.norm(tangent) #Normalise
+
     def draw(self, screen):
         num_segments = 3000  #Number of segments for smoothness
         angle_step = 2 * np.pi / num_segments # change this for how much the segment is.

@@ -67,6 +67,13 @@ class Car(object):
     def calculate_linear_path_distance(self, car_position, car_front_position):
         return np.linalg.norm(car_position - car_front_position)
 
+    def heading(self):
+        if self.path.__class__.__name__ == "StraightRoad":
+            #Placeholder: For a straight road, the heading is always in the x-direction.
+            return np.array([1.0, 0.0])
+        elif self.path.__class__.__name__ == "CircleRoad":
+            return self.path.heading_at(self.position)
+
     def calculate_circular_path_distance(self, car_position, car_front_position, circle_centre, radius):
         # This finds the arc length (S = r*theta) between two cars, for the path distance between two cars in a circular
         # path.
