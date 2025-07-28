@@ -68,7 +68,7 @@ class Car(object):
         return np.linalg.norm(car_position - car_front_position)
 
     def calculate_circular_path_distance(self, car_position, car_front_position, circle_centre, radius):
-        # This find the arc length (S = r*theta) between two cars, for the path distance between two cars in a circular
+        # This finds the arc length (S = r*theta) between two cars, for the path distance between two cars in a circular
         # path.
         # calculate angles for both cars, normalize to be in a good range (0--> 2pi?), calculate difference in angle,
         # make sure the angle doesn't have errors for negative angle etc, find arc length S = r*theta, return.
@@ -137,6 +137,10 @@ class Car(object):
 
         return a_alpha # Where a_alpha is now the tangential acceleration.
 
+    def calculate_acceleration3(self, v_front, position_front):
+        a=2 #placeholder
+        
+
     def draw(self, screen):
-        pygame.draw.circle(screen, 'red', (int(self.position[0]), int(self.position[1])), 5) # last number is radius
+        pygame.draw.circle(screen, 'red', (int(self.position[0]), int(self.position[1])), length) # The last value is the radius, set to the length of the car.
 
