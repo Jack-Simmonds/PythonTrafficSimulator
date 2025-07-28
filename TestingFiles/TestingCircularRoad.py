@@ -14,7 +14,7 @@ from StraightRoad import StraightRoad
 from CircleRoad import CircleRoad
 
 WIDTH, HEIGHT = 800, 600
-Road1 = CircleRoad(radius=200, centre=(400,300),thickness=20)
+Road1 = CircleRoad(radius=200, centre=np.array([[400],[300]]),thickness=20)
 roads = [Road1]
 
 pygame.init()
