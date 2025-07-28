@@ -15,14 +15,15 @@ class CircleRoad:
     def project_to_path(self, position):
         rel_pos = position - self.centre #self.position is the centre of the circle.
         direction = rel_pos / np.linalg.norm(rel_pos) #Normalise
-        return self.center + direction * self.radius
+        return self.centre + direction * self.radius
 
     def heading_at(self, position):
         position = np.asarray(position).reshape(-1)
         centre = self.centre.reshape(-1)
         rel = position - self.centre
 
-        tangent = np.array([-rel[1], rel[0]])
+        #tangent = np.array([-rel[1], rel[0]])
+        tangent = np.array([rel[1], -rel[0]])
         return tangent / np.linalg.norm(tangent) #Normalise
 
     def draw(self, screen):

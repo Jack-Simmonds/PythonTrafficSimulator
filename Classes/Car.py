@@ -42,6 +42,8 @@ class Car(object):
         self.position[0] += self.v[0] * dt  # x-position
         self.position[1] += self.v[1] * dt  # y-position
 
+        self.position = self.path.project_to_path(self.position) #update position to be on the path.
+
     def get_attributes(self):
         return [self.position, self.v, self.a]
 
@@ -169,7 +171,8 @@ class Car(object):
         lead = self.find_lead_vehicle() #Complete s_alpha calculation...
 
         if lead is not None:
-            v_front = np.dot(lead.v, heading) #problem: dot product --> 0 @ 90 degrees? 
+            #v_front = np.dot(lead.v, heading) #problem: dot product --> 0 @ 90 degrees? 
+            v_front = np.dot(lead.v, lead.heading()) #my change: project lead's velocity onto its own heading.
             delta_v = v_self - v_front
             s_alpha = self.calculate_linear_path_distance(self.position, lead.position) - length #unsure of this -- should it be arc length?
             #I think yes. Iterate on this later. Linear approximation fine for now.
