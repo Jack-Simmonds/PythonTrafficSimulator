@@ -14,7 +14,7 @@ from StraightRoad import StraightRoad
 from CircleRoad import CircleRoad
 
 WIDTH, HEIGHT = 800, 600
-Road1 = CircleRoad(radius=200, centre=np.array([[400],[300]]),thickness=20)
+Road1 = CircleRoad(radius=200, centre=np.array([400, 300]),thickness=20) #change from centre=np.array([[400],[300]]) --> centre=np.array([400,300])
 roads = [Road1]
 
 pygame.init()
@@ -38,12 +38,14 @@ pygame.display.set_caption('Simple Traffic System')
 clock = pygame.time.Clock()
 font = pygame.font.SysFont("Arial", 10)
 
+#Note: an implicit assumption follows that the cars travel in a counter clockwise direction around the circle.
 while True:
     dt = clock.tick(60) / 1000.0
     screen.fill('WHITE')
 
     for road in roads:
         road.draw(screen)
+        continue
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:

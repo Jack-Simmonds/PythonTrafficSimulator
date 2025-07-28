@@ -26,8 +26,8 @@ class CarTest(object):
         self.ID = ID
         self.colour = colour
         self.position = np.array(position, dtype="float64")
-        self.a = np.array([[0], [0]], dtype="float64")
-        self.v = np.array([[defaultVelocity], [0]], dtype="float64") 
+        self.a = np.array([0, 0], dtype="float64")
+        self.v = np.array([defaultVelocity, 0], dtype="float64") 
         self.path = path
         self.plotting = plotting
 

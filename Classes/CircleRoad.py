@@ -13,8 +13,6 @@ class CircleRoad:
         self.thickness = thickness
 
     def project_to_path(self, position):
-
-
         rel_pos = position - self.centre #self.position is the centre of the circle.
         direction = rel_pos / np.linalg.norm(rel_pos) #Normalise
         return self.center + direction * self.radius

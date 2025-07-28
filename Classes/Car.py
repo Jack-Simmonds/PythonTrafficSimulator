@@ -26,9 +26,9 @@ class Car(object):
     def __init__(self, ID, x, y, defaultVelocity, path=None):
         self.ID = ID
         self.color = (0, 0, 0) #black. can add an argument if I want to change.
-        self.position = np.array([[x], [y]], dtype="float64")
-        self.a = np.array([[0], [0]], dtype="float64")
-        self.v = np.array([[defaultVelocity], [0]], dtype="float64")
+        self.position = np.array([x, y], dtype="float64")
+        self.a = np.array([0, 0], dtype="float64")
+        self.v = np.array([defaultVelocity, 0], dtype="float64")
         self.path = path
 
         # Plotting elements:
@@ -165,10 +165,14 @@ class Car(object):
     def calculate_acceleration3(self, v_front, position_front):
         heading = self.heading()
         v_self = np.dot(self.v, heading)
-        lead, s_alpha = self.find_lead_vehicle()
+        lead = self.find_lead_vehicle() #Complete s_alpha calculation...
+
         if lead is not None:
             v_front = np.dot(lead.v, heading)
             delta_v = v_self - v_front
+            s_alpha = self.calculate_linear_path_distance(self.position, lead.position) - length #unsure of this -- should it be arc length?
+            #I think yes. Iterate on this later. Linear approximation fine for now.
+            #s_alpha = self.calculate_circular_path_distance(self.position, lead.position, self.path
         else:
             delta_v = 0.0
             s_alpha = np.inf
