@@ -14,7 +14,7 @@ from StraightRoad import StraightRoad
 from CircleRoad import CircleRoad
 
 WIDTH, HEIGHT = 800, 600
-Road1 = CircleRoad(radius=200, centre=np.array([400, 300]),thickness=20) #change from centre=np.array([[400],[300]]) --> centre=np.array([400,300])
+Road1 = CircleRoad(radius=200, centre=np.array([400, 300]),thickness=20)
 roads = [Road1]
 
 pygame.init()
@@ -60,6 +60,7 @@ while True:
         car.calculate_acceleration3(velocity, position)    
         car.move(dt)
         position,velocity,acceleration = car.get_attributes()
+        #print(car.get_attributes())
 
     # v_alpha_front = velocity[0]  # Assign v_(alpha - 1) for the behind car, x-direction.
     Car4.draw(screen)
@@ -71,7 +72,6 @@ while True:
     fps_text = font.render(f"FPS: {fps:.2f}", True, pygame.Color('black'))
     screen.blit(fps_text, (WIDTH - fps_text.get_width() - 10, 10))
 
-    #print(Car4.heading())
 
     # Update the display
     pygame.display.flip()

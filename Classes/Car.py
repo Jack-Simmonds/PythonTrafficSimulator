@@ -157,7 +157,8 @@ class Car(object):
     def find_lead_vehicle(self):
         # Placeholder, just for a circular path with predefined car leads:
         if self.ID == 4:
-            return self.return_car(1) # 1 leads 4.
+            return self.return_car(1) # problem: need to loop over cars here.
+        
         else:
             lead = self.return_car(self.ID + 1)  # Assuming the next car in the list is the lead vehicle.
         return lead
@@ -168,7 +169,7 @@ class Car(object):
         lead = self.find_lead_vehicle() #Complete s_alpha calculation...
 
         if lead is not None:
-            v_front = np.dot(lead.v, heading)
+            v_front = np.dot(lead.v, heading) #problem: dot product --> 0 @ 90 degrees? 
             delta_v = v_self - v_front
             s_alpha = self.calculate_linear_path_distance(self.position, lead.position) - length #unsure of this -- should it be arc length?
             #I think yes. Iterate on this later. Linear approximation fine for now.
