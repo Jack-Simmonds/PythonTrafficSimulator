@@ -182,6 +182,9 @@ class Car(object):
 
         acc = a * (1 - (v_self / v0) ** exponent - (s_star / s_alpha) ** 2)
         acc = np.clip(acc, - b, a)
+        #temp updates, unsure:
+        self.a[0] = acc * heading[0]
+        self.a[1] = acc * heading[1]  
         return acc * heading
 
         
